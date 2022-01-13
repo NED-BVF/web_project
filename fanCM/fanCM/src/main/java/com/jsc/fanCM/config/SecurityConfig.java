@@ -18,7 +18,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        super.configure(web.ignoring().mvcMatchers("/css/", "/js/","/img/","/error/","/lib/**"););
+        //super.configure(web);
+        //super.configure(web.ignoring().mvcMatchers("/css/", "/js/","/img/","/error/","/lib/**"););
+        web.ignoring().mvcMatchers("/css/", "/js/","/img/","/error/","/lib/**");
     }
 
     @Override

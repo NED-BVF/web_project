@@ -9,4 +9,12 @@ spring:
     username: jscsk
     password: dahr75sc
 
-
+  jpa:
+     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+      open-in-view: true
