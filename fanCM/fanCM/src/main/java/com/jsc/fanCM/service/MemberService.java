@@ -29,6 +29,7 @@ public class MemberService implements UserDetailsService {
      * @param nickname
      * @param email
      */
+    @Transactional
     public void isDuplivateMember(String loginId, String nickname, String email) {
         if(memberRepository.existByLoginId(loginId)) {
             throw new IllegalStateException("이미 존재하는 아이디 입니다.");
@@ -41,11 +42,10 @@ public class MemberService implements UserDetailsService {
         }
     }
 
-
-    /*
-    회원가입
-    @param memberSaveForm
+    /**
+     *  회원가입
      */
+    @Transactional
     public void save(MemberSaveForm memberSaveForm) throws IllegalStateException{
         isDuplivateMember(
                 memberSaveForm.getLoginId(),
