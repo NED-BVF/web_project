@@ -26,23 +26,28 @@ public class Member implements UserDetails {
     private String nickname;
     private String email;
 
+    @Enumerated(EnumType.STRING)
+    private Role authority;
+
     private boolean isAccountNonExpired = true;
     private boolean isAccountNonLocked = true;
     private boolean isCredentialsNonExpired = true;
     private boolean isEnabled = true;
+
+
 //    private JAXBElement<Object> athority;
-    public static Member createMember(String loginId, String loginPw, String name, String nickname, String email, Role member) {
+    public static Member createMember(String loginId, String loginPw, String name, String nickname, String email, Role authority) {
         Member member = new Member();
         member.loginId = loginId;
         member.loginPw = loginPw;
         member.name = name;
         member.nickname = nickname;
         member.email = email;
+
+        return member;
     }
 
 
-    @Enumerated(EnumType.STRING)
-    private Role authority;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
