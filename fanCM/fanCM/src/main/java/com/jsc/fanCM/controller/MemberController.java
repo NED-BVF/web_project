@@ -1,6 +1,7 @@
 package com.jsc.fanCM.controller;
 
-import com.jsc.fanCM.dto.Member.MemberSaveForm;
+import com.jsc.fanCM.dto.MemberSaveForm;
+import com.jsc.fanCM.dto.MemberLoginForm;
 import com.jsc.fanCM.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ public class MemberController {
     public String showJoin(Model model) {
         model.addAttribute("memberSaveForm", new MemberSaveForm());
 
-        return "user/member/join";
+        return "usr/member/join";
     }
 
     /**
@@ -44,7 +45,16 @@ public class MemberController {
             memberService.save(memberSaveForm);
         } catch (Exception e) {
             model.addAttribute("err_msg",e.getMessage());
+
+            return "usr/member/join";
         }
         return "redirect:/";
+    }
+
+    @GetMapping("/members/login")
+    public String showLogin(Model model){
+        model.addAttribute("memberLoginForm", new MemberLoginForm());
+
+        return "usr/member/login";
     }
 }

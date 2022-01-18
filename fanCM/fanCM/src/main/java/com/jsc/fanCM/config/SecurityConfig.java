@@ -26,16 +26,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests( authorize -> authorize
-
-                .mvcMatchers( "/members/join").anonymous()
-                .mvcMatchers("/articles/**").permitAll()
-                .mvcMatchers("/adn/**").hasRole("ADMIN")
+                // URL에 따른 권한 설정
+                .mvcMatchers(
+                        "/members/join",
+                        "/members/login"
+                )
+                .anonymous()
+                .mvcMatchers(
+                        "/articles/**",
+                        "/"
+                ).permitAll()
+                .mvcMatchers("/adm/**").hasRole("ADMIN")
                 .anyRequest()
                 .denyAll()
         )
-                .formLogin()
-                    .loginPage("/member/login")
-                    .loginProcessingUrl("/dologin")
+                .formLogin() //폼기반 선언
+                    .loginPage("/members/login")
+                    .loginProcessingUrl("/members/doLogin")
                     .usernameParameter("loginId")
                     .passwordParameter("loginPw")
                     .defaultSuccessUrl("/")

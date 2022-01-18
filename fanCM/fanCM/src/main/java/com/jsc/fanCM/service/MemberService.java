@@ -3,7 +3,7 @@ package com.jsc.fanCM.service;
 import com.jsc.fanCM.config.Role;
 import com.jsc.fanCM.dao.MemberRepository;
 import com.jsc.fanCM.domain.Member;
-import com.jsc.fanCM.dto.Member.MemberSaveForm;
+import com.jsc.fanCM.dto.MemberSaveForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -31,13 +31,13 @@ public class MemberService implements UserDetailsService {
      */
     @Transactional
     public void isDuplivateMember(String loginId, String nickname, String email) {
-        if(memberRepository.existByLoginId(loginId)) {
+        if(memberRepository.existsByLoginId(loginId)) {
             throw new IllegalStateException("이미 존재하는 아이디 입니다.");
         }
-        else if(memberRepository.existByNickname(nickname)) {
+        else if(memberRepository.existsByNickname(nickname)) {
             throw new IllegalStateException("이미 존재하는 닉네임 입니다.");
         }
-        else if(memberRepository.existByEmail(email)) {
+        else if(memberRepository.existsByEmail(email)) {
             throw new IllegalStateException("이미 존재하는 이메일 입니다.");
         }
     }
