@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -25,6 +26,9 @@ public class Member implements UserDetails {
     private String name;
     private String nickname;
     private String email;
+
+    private LocalDateTime regDate = LocalDateTime.now();
+    private LocalDateTime updateDate = LocalDateTime.now();
 
     //연속성
     @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
@@ -51,6 +55,13 @@ public class Member implements UserDetails {
         return member;
     }
 
+    public void modifyMember(String loginPw, String nickname, String email){
+
+        this.loginPw = loginPw;
+        this.nickname = nickname;
+        this.email = email;
+
+    }
 
 
     @Override

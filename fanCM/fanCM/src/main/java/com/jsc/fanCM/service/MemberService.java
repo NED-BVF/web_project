@@ -3,6 +3,7 @@ package com.jsc.fanCM.service;
 import com.jsc.fanCM.config.Role;
 import com.jsc.fanCM.dao.MemberRepository;
 import com.jsc.fanCM.domain.Member;
+import com.jsc.fanCM.dto.member.MemberModifyForm;
 import com.jsc.fanCM.dto.member.MemberSaveForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -75,5 +76,23 @@ public class MemberService implements UserDetailsService {
                 () -> new IllegalStateException("존재하지 않는 회원 입니다.")
         );
         return memberOptional.get();
+    }
+
+
+    @Transactional
+    public Long modifyMember(MemberModifyForm memberModifyForm, String loginId) {
+
+        Member findMember = findByLoginId(loginId);
+
+        BCryptPasswordEncoder bCryptPasswordEncoder =  new BCryptPasswordEncoder();
+
+        findMember.modifyMember(
+                bCryptPasswordEncoder.encode(memberModifyForm.getLoginPw()),
+                memberModifyForm.getNickname(),
+                memberModifyForm.getEmail()
+        );
+
+        return findMember.getId();
+
     }
 }
