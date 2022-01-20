@@ -1,70 +1,62 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
 </head>
 <body>
-<div class="container">
-    <div class="contents">
-        <div class="join-form">
+<div layout:fragment="content">
 
-            <div class="join-title">
-                <h1> 회원가입 </h1>
+    <div class="mb-20"></div>
+
+    <div class="container flex justify-center mx-auto">
+
+        <div class="join-form border p-20 rounded-lg shadow-md">
+
+            <div class="join-title text-2xl flex justify-center mb-12">
+                <span> 회원가입</span>
             </div>
 
             <form action="" th:action="@{~/members/join}" method="POST">
-                <div class="form-item">
-                    <span>
-                        아이디
-                    </span>
-                    <input name="loginId" type="text" autocomplete="off" required>
+                <div class="flex justify-center">
+                    <div class="flex-col">
+                        <div class="form-item mb-4">
+                            <input class="border rounded p-1 rounded bg-gray-50" name="loginId" type="text" placeholder="아이디" autocomplete="off" required>
+                        </div>
+
+                        <div class="form-item mb-4">
+                            <input class="border rounded p-1 rounded bg-gray-50" name="loginPw" type="password" placeholder="비밀번호" autocomplete="off" required>
+                        </div>
+
+                        <div class="form-item mb-4">
+                            <input class="border rounded p-1 rounded bg-gray-50" name="name" type="text" placeholder="이름" autocomplete="off" required>
+                        </div>
+
+                        <div class="form-item mb-4">
+                            <input class="border rounded p-1 rounded bg-gray-50" name="nickname" type="text" placeholder="닉네임" autocomplete="off" required>
+                        </div>
+
+                        <div class="form-item mb-4">
+                            <input class="border rounded p-1 rounded bg-gray-50" name="email" type="email" placeholder="이메일" autocomplete="off" required>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form-item">
-                    <span>
-                        비밀번호
-                    </span>
-                    <input name="loginPw" type="password" autocomplete="off" required>
-                </div>
-
-                <div class="form-item">
-                    <span>
-                        이메일
-                    </span>
-                    <input name="email" type="email" autocomplete="off" required>
-                </div>
-
-                <div class="form-item">
-                    <span>
-                        닉네임
-                    </span>
-                    <input name="nickname" type="text" autocomplete="off" required>
-                </div>
-
-                <div class="form-item">
-                    <span>
-                        이름
-                    </span>
-                    <input name="name" type="text" autocomplete="off" required>
-                </div>
-
-                <div class="form-item">
-                    <button>회원가입</button>
+                <div class="form-item flex justify-center mt-8">
+                    <button class="mr-4 border bg-blue-500 p-1 rounded text-white">회원가입</button>
                     <a href="/">
-                        <button type="button">
+                        <button class="border bg-blue-500 p-1 rounded text-white" type="button">
                             취소
                         </button>
                     </a>
                 </div>
-
             </form>
-
         </div>
-
     </div>
 
 </div>
+
 </body>
 </html>

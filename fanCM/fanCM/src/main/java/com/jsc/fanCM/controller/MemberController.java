@@ -1,7 +1,7 @@
 package com.jsc.fanCM.controller;
 
-import com.jsc.fanCM.dto.MemberSaveForm;
-import com.jsc.fanCM.dto.MemberLoginForm;
+import com.jsc.fanCM.dto.member.MemberSaveForm;
+import com.jsc.fanCM.dto.member.MemberLoginForm;
 import com.jsc.fanCM.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

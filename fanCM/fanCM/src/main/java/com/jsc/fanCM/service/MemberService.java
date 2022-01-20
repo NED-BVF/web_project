@@ -3,7 +3,7 @@ package com.jsc.fanCM.service;
 import com.jsc.fanCM.config.Role;
 import com.jsc.fanCM.dao.MemberRepository;
 import com.jsc.fanCM.domain.Member;
-import com.jsc.fanCM.dto.MemberSaveForm;
+import com.jsc.fanCM.dto.member.MemberSaveForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -31,7 +33,7 @@ public class MemberService implements UserDetailsService {
      */
     @Transactional
     public void isDuplivateMember(String loginId, String nickname, String email) {
-        if(memberRepository.existsByLoginId(loginId)) {
+    if(memberRepository.existsByLoginId(loginId)) {
             throw new IllegalStateException("이미 존재하는 아이디 입니다.");
         }
         else if(memberRepository.existsByNickname(nickname)) {
@@ -64,5 +66,14 @@ public class MemberService implements UserDetailsService {
         );
 
         memberRepository.save(member);
+    }
+
+    public Member findByLoginId(String loginId) throws IllegalStateException{
+        Optional<Member> memberOptional = memberRepository.findByLoginId(loginId);
+
+        memberOptional.orElseThrow(
+                () -> new IllegalStateException("존재하지 않는 회원 입니다.")
+        );
+        return memberOptional.get();
     }
 }

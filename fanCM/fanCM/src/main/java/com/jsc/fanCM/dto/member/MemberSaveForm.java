@@ -1,4 +1,4 @@
-package com.jsc.fanCM.dto;
+package com.jsc.fanCM.dto.member;
 
 import lombok.Data;
 
