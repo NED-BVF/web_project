@@ -1,5 +1,6 @@
 package com.jsc.fanCM.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -8,18 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
 @NoArgsConstructor
 public class Board {
     @Id
     @Column(name = "board_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
 
     private String name;
     private String detail;
 
     private LocalDateTime regDate = LocalDateTime.now();
-    private LocalDateTime upDate = LocalDateTime.now();
+    private LocalDateTime updateDate = LocalDateTime.now();
 
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
     private List<Article> articles = new ArrayList<>();
