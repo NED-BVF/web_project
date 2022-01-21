@@ -53,6 +53,8 @@ public class Member implements UserDetails {
         member.nickname = nickname;
         member.email = email;
 
+        member.authority = authority;
+
         return member;
     }
 

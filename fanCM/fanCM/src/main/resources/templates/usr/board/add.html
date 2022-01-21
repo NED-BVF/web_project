@@ -1,28 +1,43 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
 <head>
   <meta charset="UTF-8">
-  <title>게시물 작성</title>
+  <title>게시판 생성</title>
 </head>
 <body>
-<div class="container">
-  <div class="contents">
-    <div class="form" th:action="@{~/boards/add}" method="post">
+<div layout:fragment="content">
 
-      <div class="item">
-        <span>게시판 이름</span>
+  <div class="container">
 
-        <input type="text" name ="title">
-      </div>
-      <div class="item">
-        <span>게시판 설명</span>
-        <textarea name="detail" id="" cols="30" rows="10"></textarea>
-        <input type="text" name ="body">
-      </div>
+    <div class="contents">
+
+      <form action="" th:action="@{~/boards/add}" method="POST">
+
+        <div class="form-item">
+          <span>
+            게시판 이름
+          </span>
+          <input name="name" type="text" required>
+        </div>
+
+        <div class="form-item">
+          <span>게시판 설명</span>
+          <textarea name="detail" cols="30" rows="10"></textarea>
+        </div>
+
+        <div class="form-item">
+          <button>확인</button>
+          <a href="/">
+            <button>취소</button>
+          </a>
+        </div>
+
+      </form>
 
     </div>
+
   </div>
 </div>
 </body>
