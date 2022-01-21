@@ -78,7 +78,7 @@ public class MemberService implements UserDetailsService {
         return memberOptional.get();
     }
 
-
+    //회원정보 수정
     @Transactional
     public Long modifyMember(MemberModifyForm memberModifyForm, String loginId) {
 

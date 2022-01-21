@@ -20,6 +20,10 @@ public class Article {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_id")
+    private Board board;
+
     private LocalDateTime regDate = LocalDateTime.now();
     private LocalDateTime updateDate = LocalDateTime.now();
 

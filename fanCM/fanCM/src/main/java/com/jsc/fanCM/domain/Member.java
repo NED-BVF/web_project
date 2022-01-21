@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Member implements UserDetails {
     @Id
+    @Column(name = "member_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -71,6 +72,7 @@ public class Member implements UserDetails {
         authorities.add(new SimpleGrantedAuthority(this.authority.getValue()));
         return authorities;
     }
+
 
     @Override
     public String getPassword() {
